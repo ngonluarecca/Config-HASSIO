@@ -1,0 +1,48 @@
+  # monday:
+    # name: Thứ 2
+    # initial: off
+    # icon: mdi:numeric-2-box
+  # tuesday:
+    # name: Thứ 3
+    # initial: off
+    # icon: mdi:numeric-3-box
+  # wednesday:
+    # name: Thứ 4
+    # initial: off
+    # icon: mdi:numeric-4-box
+  # thursday:
+    # name: Thứ 5
+    # initial: off
+    # icon: mdi:numeric-5-box
+  # friday:
+    # name: Thứ 6
+    # initial: off
+    # icon: mdi:numeric-6-box
+  # saturday:
+    # name: Thứ 7
+    # initial: off
+    # icon: mdi:numeric-7-box
+  # sunday:
+    # name: Chu nhật
+    # initial: off
+    # icon: mdi:numeric-8-box
+  # spotify_shuffle:
+    # name: Shuffle
+    # icon: mdi:shuffle-variant
+    
+    
+#---ZingMP3---
+zing_mp3:
+  name: Play Zing MP3
+  icon: mdi:music-box
+zing_repeat:  
+  name: Repeat
+  icon: mdi:repeat
+zing_shuffle:  
+  name: Shuffle
+  icon: mdi:shuffle-variant
+  
+#---VOV radio---
+radio_vn:
+  name: Play radio
+  icon: mdi:radio

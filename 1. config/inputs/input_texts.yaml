@@ -1,0 +1,22 @@
+  webon:
+    name: Open web
+  openapp:
+    name: Mở app
+  closeapp:
+    name: Đóng app
+  youtube:
+    name: Tìm trên youtube
+  # password:
+    # name: User management
+    # initial: Some Text
+#    mode: password
+
+  so_dien_thoai:
+    name: Nhập số điện thoại cài đặt
+    initial: 03867676788
+  noi_dung:
+    name: Nhập Nội dung SMS Báo động
+    initial: Canh bao dot nhap
+  noi_dung1:
+    name: Nhập Nội dung SMS Báo Cháy
+    initial: Canh bao chay no

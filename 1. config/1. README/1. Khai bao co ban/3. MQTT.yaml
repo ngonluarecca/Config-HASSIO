@@ -1,0 +1,4 @@
+1. Cài add "Mosquitto broker", mục khai báo tương tự trong file "core_mosquitto.yaml", save và enable addon
+2. Vào file "configuration.yaml" mục "#4---Khai báo MQTT"
+3. Vào file "secrets.yaml" mục số "#5---Khai báo MQTT---".
+4. Lưu lại, check config và reset hass

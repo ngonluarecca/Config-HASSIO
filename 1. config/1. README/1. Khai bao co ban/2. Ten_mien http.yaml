@@ -1,0 +1,5 @@
+1. Cài add Duckdns, mục khai báo tương tự trong file "core_duckdns.yaml", save và enable addon
+2. Vào file "configuration.yaml" mục "#3---Khai báo tên miền---"
+3. Vào file "secrets.yaml" mục số "#6---Tên miền---", khai báo tên miền; khai báo luôn tên miền cho mục "#7---URL hay dùng---"
+4. Chú ý không nên khai báo "server_port" tránh trường hợp sau này sang router khác sẽ không tìm thấy địa chỉ phù hợp.
+5. Lưu lại, check config và reset hass

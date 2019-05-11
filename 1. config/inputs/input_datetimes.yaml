@@ -1,0 +1,8 @@
+  # giomonhac:
+    # name: Giờ báo thức bằng nhạc
+    # has_date: false
+    # has_time: true
+  # giodingu:
+    # name: Giờ đi ngủ
+    # has_date: false
+    # has_time: true

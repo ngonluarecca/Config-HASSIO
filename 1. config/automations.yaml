@@ -1,0 +1,294 @@
+
+#1---Update zigbee networkmap---
+- id: update_networkmap
+  alias: 'Zigbee Map aktualisieren'  
+  hide_entity: true  
+  trigger:
+    platform: time_pattern
+    minutes: '/10'
+    seconds: 00
+  action:
+    service: zigbee2mqtt_networkmap.update
+#2---ifttt---
+- id: '1542986440881'
+  alias: ADD ifttt
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: call_service
+  action:
+    service_template: '{{ trigger.event.data.service }}'
+    data_template:
+      entity_id: '{{ trigger.event.data.entity_id }}'
+
+
+- alias: play zing_mp3 by select music_type
+  trigger:
+    platform: state
+    entity_id: input_select.zing_mp3
+  condition:
+    condition: state
+    entity_id: input_boolean.zing_mp3
+    state: 'on'
+  action:
+    service: script.turn_on
+    entity_id: script.play_zing_mp3
+  id: 4d3ffaf0a8034b13a5291da4e0e75449
+- alias: play zing_mp3 by turn on
+  trigger:
+    platform: state
+    entity_id: input_boolean.zing_mp3
+    to: 'on'
+  action:
+    service: script.turn_on
+    entity_id: script.play_zing_mp3
+  id: 13492ac4172e44f1bbd611cf67fd9bb0
+- alias: play zing_mp3 by trigger repeat or shuffle
+  trigger:
+    platform: state
+    entity_id:
+    - input_boolean.zing_repeat
+    - input_boolean.zing_shuffle
+  condition:
+    condition: state
+    entity_id: input_boolean.zing_mp3
+    state: 'on'
+  action:
+    service: script.turn_on
+    entity_id: script.play_zing_mp3
+  id: 351ac2bfe9e740cdba7b417005b79642
+- alias: play radio by select channel
+  trigger:
+    platform: state
+    entity_id: input_select.radio_vn
+  condition:
+    condition: state
+    entity_id: input_boolean.radio_vn
+    state: 'on'
+  action:
+    service: script.turn_on
+    entity_id: script.play_radiovn
+  id: af6afe6727c74e8fac4d34dc01a1f736
+- alias: play radio by turn on
+  trigger:
+    platform: state
+    entity_id: input_boolean.radio_vn
+    to: 'on'
+  action:
+    service: script.turn_on
+    entity_id: script.play_radiovn
+  id: 748fdd878ef446bbb640389859bc2870
+- id: '1542986440886'
+  alias: Bật addon DuckDNS khi HA bật
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - alias: ''
+    data:
+      addon: core_duckdns
+    service: hassio.addon_start
+  - data:
+      addon: core_mosquitto
+    service: hassio.addon_start
+  - data:
+      addon: a0d7b954_ide
+    service: hassio.addon_start
+  - data:
+      addon: core_ssh
+    service: hassio.addon_start
+- id: '1554205137157'
+  alias: 5 phút kiểm tra addon 1 lần
+  trigger:
+  - platform: time_pattern
+    minutes: /5
+  condition: []
+  action:
+  - data:
+      addon: core_duckdns
+    service: hassio.addon_start
+  - data:
+      addon: core_mosquitto
+    service: hassio.addon_start
+  - data:
+      addon: a0d7b954_ide
+    service: hassio.addon_start
+  - data:
+      addon: core_ssh
+    service: hassio.addon_start
+- id: '1554995995577'
+  alias: Thêm Tự động hóa
+  trigger:
+  - entity_id: alarm_control_panel.home_alarm
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: alarm_control_panel.home_alarm
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.home_alarm
+    state: 'on'
+  - condition: state
+    entity_id: alarm_control_panel.home_alarm
+    state: 'on'
+  action:
+  - service: alarm_control_panel.alarm_arm_away
+
+
+#---Quạt---
+- id: '1538307050131'
+  alias: Bật quạt số 1
+  trigger:
+  - entity_id: switch.so_1
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.so_2
+    service: switch.turn_off
+  - data:
+      entity_id: switch.so_3
+    service: switch.turn_off
+- id: '1538307209184'
+  alias: Bật quạt số 2
+  trigger:
+  - entity_id: switch.so_2
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.so_1
+    service: switch.turn_off
+  - data:
+      entity_id: switch.so_3
+    service: switch.turn_off
+- id: '1538307268663'
+  alias: Bật quạt số 3
+  trigger:
+  - entity_id: switch.so_3
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.so_1
+    service: switch.turn_off
+  - data:
+      entity_id: switch.so_2
+    service: switch.turn_off
+    
+- id: '1538307268665'
+  alias: Bật quạt số 3 cơ
+  trigger:
+  - entity_id: switch.so_3
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.so_1
+    service: switch.turn_off
+  - data:
+      entity_id: switch.so_2
+    service: switch.turn_off
+    
+    
+- id: '1538301789272'
+  alias: Bật số 3 tự động theo nhiệt độ
+  trigger:
+  - above: '29'
+    below: '33'
+    entity_id: sensor.temperature
+    platform: numeric_state
+  condition:
+  - after: '17:30:00'
+    before: 06:30:00
+    condition: time
+  action:
+  - alias: ''
+    data:
+      entity_id: switch.so_3
+    service: switch.turn_on
+- id: '1538302381541'
+  alias: Tắt quạt tự động
+  trigger:
+  - above: '0'
+    below: '30'
+    entity_id: sensor.temperature
+    platform: numeric_state
+  - at: 06:35:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: switch.so_1
+    service: switch.turn_off
+  - data:
+      entity_id: switch.so_2
+    service: switch.turn_off
+  - data:
+      entity_id: switch.so_3
+    service: switch.turn_off
+- id: '1538303224684'
+  alias: Bật số 2 tự động theo nhiệt độ
+  trigger:
+  - above: '32'
+    below: '35'
+    entity_id: sensor.temperature
+    platform: numeric_state
+  condition:
+  - after: '17:30:00'
+    before: 06:30:00
+    condition: time
+  action:
+  - data:
+      entity_id: switch.so_2
+    service: switch.turn_on
+- id: '1538303443607'
+  alias: Bật số 1 tự động theo nhiệt độ
+  trigger:
+  - above: '34'
+    below: '100'
+    entity_id: sensor.temperature
+    platform: numeric_state
+  condition:
+  - after: '17:30:00'
+    before: 06:30:00
+    condition: time
+  action:
+  - data:
+      entity_id: switch.so_1
+    service: switch.turn_on
+    
+# - id: '1538320077372'
+#   alias: Tắt quạt tự động 2
+#   trigger:
+#   - entity_id: switch.cua
+#     from: 'on'
+#     platform: state
+#     to: 'off'
+#   condition:
+#   - after: 06:30:00
+#     before: '17:00:00'
+#     condition: time
+#   action:
+#   - data:
+#       entity_id: switch.so_1
+#     service: switch.turn_off
+#   - data:
+#       entity_id: switch.so_2
+#     service: switch.turn_off
+#   - data:
+#       entity_id: switch.so_3
+#     service: switch.turn_off

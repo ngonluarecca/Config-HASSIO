@@ -1,0 +1,12 @@
+  # - platform: broadlink
+    # host: 192.168.1.19
+    # mac: '4C:B0:08:B1:49:35'
+    # type: mp1
+    # friendly_name: 'MP1'
+    # slots:
+      # friendly name of slots - optional
+      # if not set, slot name will be switch's friendly_name + 'slot {slot_index}'. e.g 'MP1 slot 1'
+      # slot_1: 'WIFI'
+      # slot_2: 'Raspberry pi'
+      # slot_3: 'System'
+      # slot_4: 'S4'

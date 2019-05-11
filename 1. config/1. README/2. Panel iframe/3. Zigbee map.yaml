@@ -1,0 +1,18 @@
+1. Cài MQTT trước
+2. Add github zigbee: https://github.com/danielwelch/hassio-zigbee2mqtt
+3. Cài addon "7ad98f9c_zigbee2mqtt" và khai báo các thông số.
+- Chú ý: Thêm 2 mục "mqtt_user, mqtt_pass" chính là MQTT của hass đã cài trước đó
+4. Save và start.
+Nếu muốn add cảm biến xiaomi vào thì làm như sau:
+- Nhấn giữ nút reset trên thiết bị từ 3-5s, đến khi thấy đèn xanh nháy 3 lần thì nhả ra.
+- Sau đó, cứ khoảng 1s thì nhấn nhả 1 lần, thấy đèn xanh nháy thì nhấn nhả tiếp, làm liên tục như vậy cho đến khi thấy thiết bị hiển thị trong danh mục là được,
+hoặc có thể dùng thêm automation cập nhật mạng zigbee và quan sát mạng zigbee trên menu zigbee map.
+
+Nếu muốn hiện zigbee map trên menu:
+1. Tải tất cả file về máy: https://github.com/rgruebel/ha_zigbee2mqtt_networkmap
+3. Tạo thư mục "custom_components" và "www" trong thư mục config
+2. Copy "custom_components/zigbee2mqtt_networkmap" và "www/zigbee2mqtt_networkmap" paste vào, hỏi có ghi đè không thì yes.
+3. Vào file "configuration.yaml" thêm mục "#10---Zigbee map---"
+4. Vào file "configuration.yaml" thêm mục "#2---Thêm vào menu các chức năng IDE, Zigbee map, config,..." phần "networkmap:"
+5. Vào automation thêm mục "#1---Update zigbee networkmap---" để 10 phút zigbee cập nhật trạng thái 1 lần
+6. Lưu lại, check config và reset hass

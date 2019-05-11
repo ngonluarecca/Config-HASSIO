@@ -1,0 +1,12 @@
+#--javascript_version--
+# javascript_version: auto
+themes: !include themes.yaml
+# extra_html_url:
+  # - /local/hide_toolbar.html
+# extra_html_url_es5:
+  # - /local/hide_toolbar.html
+ # extra_html_url:
+   # - /local/custom_ui/state-card-floorplan.html
+   # - /local/custom_arsaboo/custom-weather-animated.html
+ # extra_html_url_es5:
+   # - /local/custom_arsaboo/custom-weather-animated.html

@@ -1,0 +1,8 @@
+  - name: Nhà ở quê
+    latitude: !secret latitude_que
+    longitude: !secret longitude_que
+    icon: mdi:home
+  - name: Nơi làm việc
+    latitude: !secret latitude_work
+    longitude: !secret longitude_work
+    icon: mdi:worker

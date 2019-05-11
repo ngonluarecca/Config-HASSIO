@@ -1,0 +1,185 @@
+group.all_automations:
+  hidden: false
+group.all_scripts:
+  hidden: false
+sensor.yw_day_humidity:
+  friendly_name: Độ ẩm ngoài trời
+sensor.yw_day_temperature:
+  friendly_name: Nhiệt độ ngoài trời
+sensor.temperature:
+  friendly_name: Nhiệt độ trong nhà
+sensor.humidity:
+  friendly_name: Độ ẩm trong nhà
+weather.yweather:
+  friendly_name: Dự báo thời tiết
+sun.sun:
+  friendly_name: Mặt trời
+sensor.yr_symbol:
+  friendly_name: Thời tiết
+media_player.my_room:
+  friendly_name: Google home mini
+sensor.battery_iphone:
+  friendly_name: Pin Iphone
+sensor.thu:
+  friendly_name: Hôm nay là
+group.calendar:
+  friendly_name: Lịch
+switch.loa:
+  icon: mdi:speaker
+switch.led:
+  friendly_name: Đèn
+  icon: mdi:lightbulb-on
+switch.cua:
+  friendly_name: Cửa
+  icon: mdi:door-open
+switch.so_1:
+  friendly_name: Số 1
+  icon: mdi:numeric-1-box-outline
+switch.so_2:
+  friendly_name: Số 2
+  icon: mdi:numeric-2-box-outline
+switch.so_3:
+  friendly_name: Số 3
+  icon: mdi:numeric-3-box-outline
+switch.sleep:
+  icon: mdi:sleep
+switch.restart:
+  icon: mdi:restart
+switch.shutdown:
+  friendly_name: Máy tính
+  icon: mdi:monitor
+group.light:
+  friendly_name: Điều khiển thiết bị
+sensor.processor_use:
+  friendly_name: CPU
+sensor.disk_free_home:
+  friendly_name: Disk free
+sensor.disk_use_percent_home:
+  friendly_name: Disk use
+sensor.memory_free_home:
+  friendly_name: Memory free
+sensor.memory_use_percent_home:
+  friendly_name: Memory use
+script.spotify_music:
+  friendly_name: Play
+  icon: mdi:play
+input_boolean.weather:
+  config:
+    weather: weather.yweather
+    sun: sun.sun
+binary_sensor.floorplan:
+  custom_ui_state_card: state-card-floorplan
+  config:
+    name: Demo Floorplan
+    image: /local/custom_ui/floorplan/floorplan.svg
+    stylesheet: /local/custom_ui/floorplan/floorplan.css
+    warnings:
+    last_motion_entity: sensor.template_last_motion
+    last_motion_class: last-motion
+    groups:
+    - name: Sensors
+      entities:
+      - sensor.dark_sky_temperature
+      text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'
+      class_template: ' var temp = parseFloat(entity.state.replace("°", "")); if (temp
+        < 10) return "temp-low"; else if (temp < 30) return "temp-medium"; else return
+        "temp-high"; '
+    - name: Lights
+      entities:
+      - light.hallway
+      - light.living_room
+      - light.patio
+      - group.kitchen_lights
+      - group.living_room_lights
+      states:
+      - state: 'on'
+        class: light-on
+      - state: 'off'
+        class: light-off
+      action:
+        domain: homeassistant
+        service: toggle
+    - name: Switches
+      entities:
+      - switch.Led
+      - switch.Loa
+      - switch.Cua
+      - group.PC
+      states:
+      - state: 'on'
+        class: doorbell-on
+      - state: 'off'
+        class: doorbell-off
+    - name: NVR
+      entities:
+      - binary_sensor.blue_iris_nvr
+      text_template: '${(entity.state === "on") ? "online" : "offline"}'
+      states:
+      - state: 'off'
+        class: danger-text
+      - state: 'on'
+        class: success-text
+    - name: Alarm Panel
+      entities:
+      - alarm_control_panel.alarm
+      states:
+      - state: armed_away
+        class: alarm-armed
+      - state: armed_home
+        class: alarm-armed
+      - state: disarmed
+        class: alarm-disarmed
+    - name: Binary sensors
+      entities:
+      - binary_sensor.front_hallway
+      - binary_sensor.kitchen
+      - sensor.disk_free_home
+      - sensor.memory_use_percent_home
+      - sensor.memory_free_home
+      states:
+      - state: 'off'
+        class: info-background
+      - state: 'on'
+        class: warning-background
+      state_transitions:
+      - name: On to off
+        from_state: 'on'
+        to_state: 'off'
+        duration: 10
+    - name: Cameras
+      entities:
+      - camera.desktop
+      - camera.name_camera
+      states:
+      - state: idle
+        class: camera-idle
+script.moapp:
+  friendly_name: Mở phần mềm
+  icon: mdi:folder-open
+input_select.app_computer:
+  icon: mdi:windows
+script.dongapp:
+  friendly_name: Tắt phần mềm
+  icon: mdi:close-circle
+script.webon:
+  friendly_name: Mở website
+  icon: mdi:search-web
+input_text.webon:
+  friendly_name: Website
+  icon: mdi:web
+script.playyoutube:
+  friendly_name: Play on youtube
+  icon: mdi:play
+input_text.youtube:
+  friendly_name: Youtube
+  icon: mdi:youtube
+script.youtube:
+  friendly_name: Tìm kiếm trên Youtube
+  icon: mdi:youtube-subscription
+script.chuphinhpc:
+  friendly_name: Desktop
+  icon: mdi:desktop-mac-dashboard
+sensor.dark_sky_humidity:
+  friendly_name: Độ ẩm ngoài trời
+sensor.dark_sky_temperature:
+  friendly_name: Nhiệt độ ngoài trời

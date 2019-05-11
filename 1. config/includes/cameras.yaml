@@ -1,0 +1,15 @@
+  # - platform: ffmpeg
+    # input: 'rtsp://admin:123456789ko@192.168.123.89:554/onvif1'
+    # name: name camera
+#   - platform: ffmpeg
+#     input: 'rtsp://admin:123456789ko@192.168.123.89:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif'
+#     name: My camera
+#   - platform: generic
+#     name: cam cast
+#     still_image_url: "http://192.168.123.89/cgi-bin/snapshot.cgi?channel=1"
+#     stream_source: "rtsp://192.168.123.89/cam/realmonitor?channel=1&subtype=0"
+# #    port:
+#   - platform: mqtt
+#     topic: "PC/image"
+#     name: desktop
+    

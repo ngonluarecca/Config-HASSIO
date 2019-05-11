@@ -1,0 +1,13 @@
+  use_include_order: True
+  include:
+      domains:
+        - sensor
+        - switch
+        - binary_sensor
+        - light
+      entities:
+      - sensor.humidity
+      - sensor.yw_day_humidity
+      - sensor.battery_iphone
+      - sensor.temperature
+      - sensor.yw_day_temperature

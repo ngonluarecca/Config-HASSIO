@@ -1,0 +1,17 @@
+1. Đăng nhập và lấy key ifttt tại: https://ifttt.com/services/maker_webhooks/settings
+2. Vào file "configuration.yaml" mục "#13---Ifttt---"
+3. Vào file "secrets.yaml" mục số "#10---key ifttt---", nhập key iftt vào đây.
+4. Vào menu "cấu hình" trên hass -> "các bộ tích hợp" -> add iftt -> submit -> copy lại link có dạng: https://domain.duckdns.org:8123/api/webhook/a1234457e3eb7683ca8aa7ffbf83675a61d759a83600aeb4568f8a1bb36ae3fd
+5. Vào automation thêm mục "#2---ifttt---".
+6. Lưu lại, check config và reset hass
+
+Tạo lệnh trên ifttt thông qua webhook:
+1. Đăng nhập vào ifttt.
+2. Tạo 1 lệnh mới, chú ý:
+- Mục "What do you want the Assistant to say in response?" có thể nhập câu tiếng việt nếu bạn muốn phản hồi tiếng việt
+- Mục "URL" paste link ifttt vừa tạo có dạng: https://domain.duckdns.org:8123/api/webhook/a1234457e3eb7683ca8aa7ffbf83675a61d759a83600aeb4568f8a1bb36ae3fd
+- Mục "Method" chọn "POST"
+- Mục "Content Type (optional)" chọn "application/json"
+- Mục "Body (optional)" nhập dạng:
+{"action": "call_service", "service": "script.turn_on", "entity_id": "script.i_return"}
+ trong đó thay các phần tương ứng tùy nhu cầu.

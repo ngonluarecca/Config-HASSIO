@@ -1,0 +1,111 @@
+  # default_view:
+    # view: yes
+    # icon: mdi:home
+    # entities:
+      # - device_tracker.luffy
+      # - sensor.battery_iphone
+      # - sensor.temperature
+      # - sensor.humidity
+      # - sun.sun
+      # - sensor.yr_symbol
+      # - sensor.processor_use
+      # - sensor.disk_use_percent_home
+      # - sensor.disk_free_home
+      # - sensor.memory_use_percent_home
+      # - sensor.memory_free_home
+      # - group.Light
+      # - group.Quat
+      # - group.calendar
+      # - group.PC
+      # - group.broadlink_MP1
+      # - group.laptop
+      # - camera.desktop
+      # - group.speaker
+      # - group.Baothuc
+      # - history_graph.nhiet_o_va_o_am_trong_ngay
+      # - weather.yweather
+      # - media_player.my_room
+      # - camera.name_camera
+      # - group.zones
+  automation_view:
+    name: Tự động
+    control: hidden
+    view: yes
+    entities:
+      - group.all_automations
+      - group.all_scripts
+  Light:
+    name: Đèn
+    view: no
+    entities:
+      - switch.Led
+      - switch.Loa
+      - switch.Cua
+  Quat:
+    name: Quạt
+    control: hidden
+    view: no
+    entities:
+      - switch.So_1
+      - switch.So_2
+      - switch.So_3
+      # - sensor.battery_iphone
+  PC:
+    name: Máy tính
+    control: hidden
+    view: no
+    entities:
+      - switch.Shutdown
+      
+  calendar:
+    name: Date_Time
+    view: no
+    entities:
+      - sensor.thu
+      - sensor.d_time
+      - sensor.time
+
+  Baothuc:
+   name: bao_thuc
+   view: no
+   entities:
+     - input_datetime.giomonhac
+     - input_datetime.giodingu
+     - input_select.nhietdo
+     - input_select.chedo
+  laptop:
+   name: Laptop
+   control: hidden
+   view: no
+   entities:
+     - input_text.openapp
+     - script.moapp
+     - input_text.closeapp
+     - script.dongapp
+     - input_text.webon
+     - script.webon
+     - script.youtube
+     - input_text.youtube
+     - script.playyoutube
+     - script.chuphinhpc
+
+  zones:
+    name: Zones
+    entities:
+      - binary_sensor.floorplan
+      
+#---ZingMP3---
+  zing_mp3:
+    name: Zing MP3
+    control: hidden
+    entities:
+      - input_boolean.zing_mp3
+      - input_select.zing_mp3
+      - input_boolean.zing_repeat
+      - input_boolean.zing_shuffle
+#---VOV Radio---
+  radio_vn:
+    name: Radio VN
+    entities:
+      - input_boolean.radio_vn
+      - input_select.radio_vn

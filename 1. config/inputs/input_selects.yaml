@@ -1,0 +1,44 @@
+#-----APP Computer-----
+app_computer:
+  name: Phần mềm
+  options:
+    - TeamViewer
+    - UltraViewer
+    - Messenger
+    - Zalo
+    - Skype
+    - Camtasia Record
+    - None
+  icon: mdi:fan
+#----ZingMP3----
+zing_mp3:
+  name: Music type
+  options:
+    - Pop
+    - Country
+    - Rock
+    - Dance
+    - R&B
+    - Rap
+    - Soundtrack
+    - Nhac tre
+    - Tru tinh
+    - Que huong
+    - Cach mang
+    - Rock Viet
+    - Rap Viet
+    - Dance Viet
+  initial: Pop
+  icon: mdi:format-list-checkbox
+    
+#---VOV radio---
+radio_vn:
+  name: Channel
+  options:
+    - VOV1
+    - VOV2
+    - VOV3
+    - VOVGT-HN
+    - VOVGT-HCM
+  initial: VOV3
+  icon: mdi:format-list-checkbox

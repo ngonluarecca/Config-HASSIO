@@ -1,0 +1,67 @@
+2019-05-09 15:24:32 ERROR (SyncWorker_0) [homeassistant.util.yaml] YAML file /config/includes/scripts.yaml contains duplicate key "play_radiovn". Check lines 84 and 105.
+2019-05-09 15:24:32 ERROR (SyncWorker_0) [homeassistant.util.yaml] YAML file /config/configuration.yaml contains duplicate key "discovery". Check lines 129 and 135.
+2019-05-09 15:24:32 ERROR (SyncWorker_0) [homeassistant.util.yaml] YAML file /config/configuration.yaml contains duplicate key "discovery". Check lines 69 and 152.
+2019-05-09 15:24:34 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for zigbee2mqtt_networkmap which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-05-09 15:24:34 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for radio_vn which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-05-09 15:24:34 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for weather_forecast which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-05-09 15:24:34 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for zing_mp3 which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-05-09 15:24:34 WARNING (MainThread) [homeassistant.loader] You are using a custom integration for read_news which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you do experience issues with Home Assistant.
+2019-05-09 15:24:37 ERROR (MainThread) [homeassistant.setup] Setup failed for input_number: Component failed to initialize.
+2019-05-09 15:24:37 ERROR (MainThread) [homeassistant.setup] Setup failed for input_datetime: Component failed to initialize.
+2019-05-09 15:24:43 WARNING (MainThread) [homeassistant.components.template.sensor] Template sensor d_time has no entity ids configured to track nor were we able to extract the entities to track from the value template(s). This entity will only be able to be updated manually.
+2019-05-09 15:24:43 WARNING (MainThread) [homeassistant.components.template.sensor] Template sensor thu has no entity ids configured to track nor were we able to extract the entities to track from the value template(s). This entity will only be able to be updated manually.
+2019-05-09 15:24:47 WARNING (MainThread) [homeassistant.setup] Setup of xiaomi_aqara is taking over 10 seconds.
+2019-05-09 15:24:47 ERROR (SyncWorker_12) [xiaomi_gateway] Cannot connect to Gateway
+2019-05-09 15:24:47 ERROR (SyncWorker_12) [xiaomi_gateway] No data in response from hub None
+2019-05-09 15:24:48 ERROR (SyncWorker_10) [homeassistant.components.ios.notify] The notify.ios platform was loaded but no devices exist! Please check the documentation at https://home-assistant.io/ecosystem/ios/notifications/ for more information
+2019-05-09 15:24:57 ERROR (SyncWorker_12) [xiaomi_gateway] Cannot connect to Gateway
+2019-05-09 15:25:07 ERROR (SyncWorker_12) [xiaomi_gateway] Cannot connect to Gateway
+2019-05-09 15:25:17 ERROR (SyncWorker_12) [xiaomi_gateway] Cannot connect to Gateway
+2019-05-09 15:25:27 ERROR (SyncWorker_12) [xiaomi_gateway] Cannot connect to Gateway
+2019-05-09 15:25:37 ERROR (SyncWorker_12) [xiaomi_gateway] Cannot connect to Gateway
+2019-05-09 15:25:43 ERROR (stream_worker) [libav.rtsp] Nonmatching transport in server reply
+2019-05-09 15:25:45 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the radio_vn integration
+2019-05-09 15:25:47 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the weather_forecast integration
+2019-05-09 15:25:47 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the read_news integration
+2019-05-09 15:25:47 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the zing_mp3 integration
+2019-05-09 15:25:48 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the radio_vn integration
+2019-05-09 15:25:49 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the weather_forecast integration
+2019-05-09 15:25:49 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the read_news integration
+2019-05-09 15:25:49 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the zing_mp3 integration
+2019-05-09 15:25:52 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the radio_vn integration
+2019-05-09 15:25:52 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the weather_forecast integration
+2019-05-09 15:25:53 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the read_news integration
+2019-05-09 15:25:53 WARNING (MainThread) [homeassistant.helpers.service] Unable to find services.yaml for the zing_mp3 integration
+2019-05-09 16:18:40 WARNING (Thread-3) [pychromecast.socket_client] [Gg:8009] Heartbeat timeout, resetting connection
+2019-05-09 16:24:37 ERROR (MainThread) [homeassistant.components.updater] Got unexpected response: None
+2019-05-09 16:29:30 WARNING (MainThread) [homeassistant.components.script] Script script.play_zing_mp3 already running.
+2019-05-09 16:29:33 ERROR (MainThread) [homeassistant.core] Error executing service <ServiceCall script.play_zing_mp3 (c:c003e4cb1bcf4419b8185c2d237a9995)>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/core.py", line 1147, in _safe_execute
+    await self._execute_service(handler, service_call)
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/core.py", line 1160, in _execute_service
+    await handler.func(service_call)
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/components/script/__init__.py", line 114, in service_handler
+    context=service.context)
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/components/script/__init__.py", line 172, in async_turn_on
+    kwargs.get(ATTR_VARIABLES), context)
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/helpers/script.py", line 131, in async_run
+    await self._handle_action(action, variables, context)
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/helpers/script.py", line 210, in _handle_action
+    action, variables, context)
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/helpers/script.py", line 299, in _async_call_service
+    context=context
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/helpers/service.py", line 89, in async_call_from_config
+    domain, service_name, service_data, blocking=blocking, context=context)
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/core.py", line 1138, in async_call
+    self._execute_service(handler, service_call))
+  File "/usr/local/lib/python3.7/site-packages/homeassistant/core.py", line 1162, in _execute_service
+    await self._hass.async_add_executor_job(handler.func, service_call)
+  File "/usr/local/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/zing_mp3.py", line 72, in play_zing
+    mp3_links = get_audio_links(music_type)
+  File "/config/custom_components/zing_mp3.py", line 58, in get_audio_links
+    link = prefix_url + re['source']['128']
+KeyError: '128'
+2019-05-09 16:29:45 WARNING (MainThread) [homeassistant.components.script] Script script.play_zing_mp3 already running.

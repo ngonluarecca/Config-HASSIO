@@ -1,0 +1,175 @@
+#1---Khai báo cơ bản---
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude_tro
+  longitude: !secret longitude_tro
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: !secret unit_system
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret time_zone
+  # Customization file
+  customize: !include customize.yaml
+  whitelist_external_dirs:
+  - '/tmp'
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+discovery:
+conversation:
+cloud:
+logbook:
+config:
+sun:
+map:
+# Nhật kí
+recorder:
+  purge_keep_days: 3
+  include:
+    domains:
+      - sensor
+      - switch
+      - binary_sensor
+      - light
+# theme hass
+frontend: !include frontend.yaml
+# Camera
+ffmpeg:
+
+#2---Thêm vào menu các chức năng IDE, Zigbee map, config,...
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret url_config
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret url_ide
+  networkmap:
+     title: 'Zigbee Map'
+     url: '/local/zigbee2mqtt_networkmap/map.html'
+     icon: 'mdi:graphql'
+#3---Khai báo tên miền---
+http:
+  #server_host: 192.168.2.16
+  server_port: 8123
+  base_url: !secret url_host
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+
+#4---Khai báo MQTT
+mqtt:
+   discovery: true
+   discovery_prefix: homeassistant
+   broker: !secret mqtt_host
+   port: 1883
+   username: !secret mqtt_username
+   password: !secret mqtt_password
+   discovery: true
+   protocol: 3.1.1
+#5---Các phần trong thư mục include---
+group: !include includes/groups.yaml
+automation: !include automations.yaml
+script: !include includes/scripts.yaml
+sensor: !include includes/sensors.yaml
+binary_sensor: !include includes/binary_sensors.yaml
+history: !include includes/histories.yaml
+history_graph: !include includes/history_graphs.yaml
+camera: !include includes/cameras.yaml
+#6---Các phần trong thư mục input---
+input_number: !include inputs/input_numbers.yaml
+input_select: !include inputs/input_selects.yaml
+input_boolean: !include inputs/input_booleans.yaml
+input_text: !include inputs/input_texts.yaml
+input_datetime: !include inputs/input_datetimes.yaml
+#7---Khai báo các loại công tắc---
+switch: !include_dir_merge_list switchs/
+#7_1---Ctac Tuya---
+tuya:
+  username: !secret tuya_email
+  password: !secret tuya_pass
+  country_code: !secret tuya_countrycode
+  platform: tuya
+#8---Liên kết tài khoản google miễn phí---
+google_assistant: !include media_devices/google_assistants.yaml
+#9---Chuyển văn bản thành giọng nói (phiên bản hass >92.0)---
+tts:
+  - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+    language: 'vi'
+    base_url: !secret url_host
+    service_name: google_say
+#9_1---Đối với phiên bản hass <92.0
+  # - platform: google
+    # cache: true
+    # cache_dir: /tmp/tts
+    # time_memory: 300
+    # language: 'vi'
+    # base_url: !secret url_host
+#9_2----Phụ lục thêm cho media---
+media_extractor:
+   # default_query: best
+   # customize:
+     # media_player.my_room:
+       # video: bestvideo
+       # music: bestaudio[ext=mp3]
+media_player:
+  # - platform: spotify
+    # client_id: a61f924f54cc488fbc1c9a300f140f29
+    # client_secret: b12b5ae0aaa240e98f623184de8f6f8b
+#10---Zigbee map---
+zigbee2mqtt_networkmap:
+#11---Xiaomi_aqara---
+xiaomi_aqara: !include xiaomi_aqaras.yaml
+#12---Thời tiết----
+weather:
+  - platform: darksky
+    api_key: !secret api_dasksky
+    units: si
+    name: darksky_weather
+    mode: daily
+#13---Ifttt---
+ifttt:
+ key: !secret key_ifttt
+#14---Tính năng bổ sung như: đọc thời tiết, đọc báo, radio hay nghe nhạc trên ZingMP3---
+weather_forecast:
+read_news:
+radio_vn:
+zing_mp3:
+#15---Wake on lan---
+wake_on_lan:
+#16--- Tracker---
+device_tracker: !include device_trackers/device_trackers.yaml
+zone: !include device_trackers/zones.yaml
+ios:
+homekit:
+  auto_start: true
+  filter:
+    include_domains:
+      - switch
+discovery:
+  enable:
+    - homekit
+owntracks:
+  max_gps_accuracy: 200
+  waypoints: true
+  mqtt_topic: "owntracks/#"
+  events_only: true
+#17---Alarm code---
+# alarm_control_panel:
+  # - platform: manual
+    # name: Home Alarm
+    # code: 1234
+    # pending_time: 30
+    # delay_time: 20
+    # trigger_time: 4
+    # disarmed:
+      # trigger_time: 0
+    # armed_home:
+      # pending_time: 0
+      # delay_time: 0

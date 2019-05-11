@@ -1,0 +1,144 @@
+  - platform: yr
+#    name: Dự báo thời tiết
+    # forecast: 24
+    # monitored_conditions:
+      # - temperature
+      # - symbol
+      # - precipitation
+      # - windSpeed
+      # - pressure
+      # - windDirection
+      # - humidity
+      # - fog
+      # - cloudiness
+      # - lowClouds
+      # - mediumClouds
+      # - highClouds
+      # - dewpointTemperature
+  - platform: template
+    sensors:
+      battery_iphone:
+        friendly_name: iPhone Battery
+        unit_of_measurement: '%'
+        value_template: >-
+            {%- if states.device_tracker.luffy.attributes.battery %}
+            {{ states.device_tracker.luffy.attributes.battery|round }}
+            {% else %}
+            {{ states.sensor.battery_iphone.state }}
+            {%- endif %}
+        icon_template: '{%- if is_state("sensor.battery_iphone", "unknown") %}mdi:battery-unknown{%- elif is_state_attr("device_tracker.luffy", "battery_status", "Charging") %}mdi:battery-charging{%- elif states.device_tracker.luffy.attributes.battery <= 5 %}mdi:battery-outline{%- elif states.device_tracker.luffy.attributes.battery >= 95 %}mdi:battery{% else %}mdi:battery-{{(states.device_tracker.luffy.attributes.battery|float / 10)|round*10}}{%- endif %}'
+        device_class: battery
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+#      - 'date_time'
+      # - 'time_date'
+#      - 'time_utc'
+#      - 'beat'
+  - platform: template
+    sensors:
+      d_time:
+        friendly_name: Ngày tháng
+        icon_template: mdi:calendar
+        value_template: >-
+            {{ now().strftime('%d-%m-%Y') }}
+#----Nhiệt độ và độ ẩm trong nhà----
+  - platform: mqtt
+    state_topic: 'ESP_SS/DHT11'
+    name: 'temperature'
+    unit_of_measurement: '°C'
+    value_template: '{{ value_json.temperature | round(0)}}'
+  - platform: mqtt
+    state_topic: 'ESP_SS/DHT11'
+    name: 'humidity'
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.humidity | round(0)}}'
+#----Công suất sử dụng secahome----------
+  - platform: mqtt
+    name: "Điện áp"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.U }}"
+    unit_of_measurement: "V"
+    icon: mdi:flash
+
+  - platform: mqtt
+    name: "Dòng điện"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.A }}"
+    unit_of_measurement: "A"
+    icon: mdi:power-socket
+    
+  - platform: mqtt
+    name: "Công suất thực"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.P}}"
+    unit_of_measurement: "kW"
+    icon: mdi:power-plug
+    
+  - platform: mqtt
+    name: "Năng lượng hôm nay"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.To}}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+
+  - platform: mqtt
+    name: "Năng lượng hôm qua"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.Ye }}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+    
+  - platform: mqtt
+    name: "Năng lượng tháng này"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.ReM }}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+    
+  - platform: mqtt
+    name: "Năng lượng tháng trước"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.LaM }}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+    
+  - platform: mqtt
+    name: "Tổng số điện"
+    state_topic: "ESP_SS/SCH"
+    value_template: "{{ value_json.CP }}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+    
+#---Thứ ngày tháng
+  - platform: template
+    sensors:
+      thu:
+        friendly_name: "date_week" 
+        value_template: >-
+          {{ ['Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7','Chủ nhật'][now().weekday()] }}
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(1) }}'
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_use_percent
+        arg: /home
+      - type: disk_free
+        arg: /home
+      - type: memory_free
+        arg: /home
+  - platform: darksky
+    api_key: !secret api_dasksky
+    monitored_conditions:
+      - humidity
+      - temperature
+    # update_interval:
+    #   minutes: 5
+ 

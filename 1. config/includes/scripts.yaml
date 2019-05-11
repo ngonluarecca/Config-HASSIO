@@ -1,0 +1,175 @@
+  moapp:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          topic: "PC/openapp"
+          payload_template: >
+            {% if is_state("input_select.app_computer", "TeamViewer") %} C:\Program Files (x86)\TeamViewer\TeamViewer.exe
+            {% elif is_state("input_select.app_computer", "UltraViewer") %} C:\Program Files (x86)\UltraViewer\UltraViewer_Desktop.exe
+            {% elif is_state("input_select.app_computer", "Messenger") %} C:\Users\ds720\AppData\Local\messengerfordesktop\app-2.0.9\Messenger for Desktop.exe
+            {% elif is_state("input_select.app_computer", "Zalo") %} C:\Users\ds720\AppData\Local\Zalo\Zalo.exe
+            {% elif is_state("input_select.app_computer", "Skype") %} C:\Program Files (x86)\Microsoft\Skype for Desktop\Skype.exe
+            {% elif is_state("input_select.app_computer", "Camtasia Record") %} C:\Program Files\TechSmith\Camtasia 9\CamRecorder.exe
+            {% elif is_state("input_select.app_computer", "input_tex") %} {{states('input_text.openapp')}}
+            {% endif %}
+  dongapp:
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "PC/closeapp"
+          payload_template: >
+            {% if is_state("input_select.app_computer", "TeamViewer") %} TeamViewer.exe
+            {% elif is_state("input_select.app_computer", "UltraViewer") %} UltraViewer_Desktop.exe
+            {% elif is_state("input_select.app_computer", "Messenger") %} Messenger for Desktop.exe
+            {% elif is_state("input_select.app_computer", "Zalo") %} Zalo.exe
+            {% elif is_state("input_select.app_computer", "Skype") %}Skype.exe
+            {% elif is_state("input_select.app_computer", "Camtasia Record") %} CamRecorder.exe
+            {% elif is_state("input_select.app_computer", "input_tex") %} {{states('input_text.closeapp')}}
+            {% endif %}
+#          payload: "{{states('input_text.closeapp')}}"
+  webon:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          topic: "PC/web"
+          payload: "{{states('input_text.webon')}}"
+  chuphinhpc:
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "PC/shot"
+          payload: "on"
+  youtube:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          topic: "PC/youtube"
+          payload: "{{states('input_text.youtube')}}"
+  playyoutube:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          topic: "PC/playyoutube"
+          payload: "{{states('input_text.youtube')}}"
+  shutdown:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          topic: "PC/shutdown"
+          payload: "1"
+          
+        
+      # voice_type xem trong voice_list của tts_hass.py
+          url_hassio: !secret url_host
+  read_news:
+    sequence:
+      - service: read_news.get
+        data:
+          news_name: 'vietnamnet' 
+          # ('dantri', 'dantri_all', 'vietnamnet', 'genk')
+          tts_service: 'tts_fpt.say'
+          voice_type: 'nu_mien_bac'
+          entity_id: 'media_player.googlehome8559'
+          cache: false 
+        # optional, default = false
+  #tts_fpt.say
+  read_weather:
+    sequence:
+      - service: weather_forecast.get
+        data:
+          place_id: 'ha-noi.cu-dong'
+          tts_service: 'tts_fpt.say'
+          entity_id: 'media_player.googlehome8559'
+          voice_type: 'nu_mien_bac' 
+          # optional, default = 'nu_mien_bac'
+  play_radiovn:
+    sequence:
+      - service: radio_vn.play
+        data:
+          entity_id: media_player.googlehome8559
+          channel: 'VOV2'
+      # optional, default: 'VOV3' #list channel: VOV1, VOV2, VOV3, VOVGT-HN, VOVGT-HCM
+#---Zing MP3---
+  play_zing_mp3:
+   sequence:
+     - service: zing_mp3.play
+       data_template:
+         entity_id: media_player.googlehome8559
+         music_type: >
+           {{ states.input_select.zing_mp3.state }} 
+         repeat: >
+           {{ states.input_boolean.zing_repeat.state }}          
+         shuffle: >
+           {{ states.input_boolean.zing_shuffle.state }}          
+           
+#---VOV Radio---
+  play_radiovn:
+   sequence:
+     - service: radio_vn.play
+       data_template:
+         entity_id: media_player.googlehome8559
+         channel: >
+           {{ states.input_select.radio_vn.state }}
+           
+           
+           
+#---SIM---
+  setphone_number:
+    alias: setphonenumber
+    sequence:
+      - data:
+          payload_template: '!'
+          topic: nhaantoanviet
+        service: mqtt.publish
+      - delay: 00:00:01
+      - data:
+          payload_template: '{{states.input_text.so_dien_thoai.state}}'
+          topic: nhaantoanviet/number
+        service: mqtt.publish
+  setsms_text:
+    alias: setsmstext
+    sequence:
+      - data:
+          payload_template: '@'
+          topic: nhaantoanviet
+        service: mqtt.publish
+      - delay: 00:00:01
+      - data:
+          payload_template: '{{states.input_text.noi_dung.state}}'
+          topic: nhaantoanviet/text
+        service: mqtt.publish
+   
+  setsms_text1:
+    alias: setsmstext1
+    sequence:
+      - data:
+          payload_template: '$'
+          topic: nhaantoanviet
+        service: mqtt.publish
+      - delay: 00:00:01
+      - data:
+          payload_template: '{{states.input_text.noi_dung1.state}}'
+          topic: nhaantoanviet/text
+        service: mqtt.publish    
+  ca_ll:
+    alias: call
+    sequence:
+      - data:
+          payload_template: '%'
+          topic: nhaantoanviet
+    
+        service: mqtt.publish
+  sms:
+    alias: sms
+    sequence:
+      - data:
+          payload_template: '&'
+          topic: nhaantoanviet
+        service: mqtt.publish
+  sms1:
+    alias: sms1
+    sequence:
+      - data:
+          payload_template: '#'
+          topic: nhaantoanviet
+        service: mqtt.publish

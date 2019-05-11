@@ -1,0 +1,9 @@
+gr2:
+    name: Nhiệt độ và độ ẩm trong ngày
+    entities:
+      - sensor.humidity
+      - sensor.dark_sky_humidity
+      - sensor.temperature
+      - sensor.dark_sky_temperature
+    hours_to_show: 24
+    refresh: 300

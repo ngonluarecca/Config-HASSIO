@@ -1,0 +1,11 @@
+  project_id: #smart-5612d
+  api_key: #key Google cloud api dạng: AIzaSyA1vvl-3B4YLT3uOnoejZCude7EJSZq6bQ
+  exposed_domains:
+    - switch
+    - light
+    - media_player
+    - camera
+    - scene
+    - script
+    - climate
+    - vacuum

@@ -1,0 +1,11 @@
+Chú ý: Dưới đây là cách liên kết google assistant với hass không qua Nabucasa tính phí nên cách làm hơi phức tạp, đổi lại dùng miễn phí. 
+Nên add hết các thiết bị, tạo script và automation rồi mới làm bước này, phòng trường hợp link ko update thiết bị mới.
+
+1. Vào file "configuration.yaml" mục "#8---Liên kết tài khoản google miễn phí---"
+2. Làm theo hướng dẫn: http://lbminhautomation.com/google-assistant-voi-hass.html để lấy Project ID và Api google
+3. Vào file "\media_devices\configuration.yaml" điền Project ID và Api google
+4. Lưu lại, check config và reset hass
+
+Thông báo giọng nói bằng tiếng việt - tts google
+1. Vào file "configuration.yaml" mục "#9---Chuyển văn bản thành giọng nói (phiên bản hass >92.0)---"
+2. Lưu lại, check config và reset hass

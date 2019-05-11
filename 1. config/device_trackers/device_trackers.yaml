@@ -1,0 +1,10 @@
+  - platform: icloud
+    username: !secret username_icloud
+    password: !secret password_icloud
+    account_name: ngonluarecca
+    max_interval: 5
+    gps_accuracy_threshold: 200
+  - platform: nmap_tracker
+    hosts: 192.168.123.225-235
+    home_interval: 10
+     

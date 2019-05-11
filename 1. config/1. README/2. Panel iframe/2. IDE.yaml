@@ -1,0 +1,8 @@
+1. Cài addon "a0d7b954_ide" và khai báo các thông số.
+- Chú ý: Nếu dùng ssl thì mục "ssl" đặt là true, còn không thì đặt là false
+2. Save và start.
+
+Nếu muốn hiện dòng này ở menu:
+1. Vào file "configuration.yaml" mục "#2---Thêm vào menu các chức năng IDE, Zigbee map, config,..." phần "ide:"
+2. Vào file "secrets.yaml" mục số "#7---URL hay dùng---", khai báo phần "url_ide"
+3. Lưu lại, check config và reset hass
