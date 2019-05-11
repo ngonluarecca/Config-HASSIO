@@ -11,6 +11,3 @@ nếu dùng router thì vào modelm, vào mục DMZ khai báo ip của router, k
 8. Copy toàn bộ các file trong thư mục config vào trong thu mục tương ứng của hass, khai báo các thông số cần thiết.
 9. Lưu lại, check config và reset hass
 10. Sau khi reset nếu đã cài Duckdns thì đã bật ssl nên phải dùng: https://p_pi:8123
-
-
-sdsd
